@@ -2,8 +2,6 @@ require './u5+6'
 require 'test/unit'
 
 class Seminarie1_Test < Test::Unit::TestCase
-
-
   def test_fullname
     assert_equal("Safwat Ismail", PersonName.new("Ismail", "Safwat").fullname)
   end
@@ -15,7 +13,7 @@ class Seminarie1_Test < Test::Unit::TestCase
   end
 
   def test_Person
-    person = Person.new("Ahmed", "Sikh")
+    person = Person.new("Ahmed", "Sikh", 25)
     assert_equal("Sikh Ahmed", person.name.fullname)
     assert_equal("Ahmed", person.name.name)
     assert_equal("Sikh", person.name.surname)

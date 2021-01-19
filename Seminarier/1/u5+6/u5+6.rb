@@ -20,7 +20,7 @@ end
 #U6
 class Person
   attr_accessor :age, :birthyear, :name
-  def initialize(name = "Karl", surname = "Karlsson", age = 0)
+  def initialize(name, surname, age)
     @age = age
     @birthyear = DateTime.now.to_date.year - age
     @name = PersonName.new(name, surname)
