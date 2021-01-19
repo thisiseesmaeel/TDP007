@@ -1,11 +1,7 @@
 #! usr/bin/env ruby
 require 'date'
 
-
-
-
-#AVSNITT 2
-
+#U5
 class PersonName
   attr_accessor :name, :surname
   def initialize(name, surname)
@@ -21,6 +17,7 @@ class PersonName
   end
 end
 
+#U6
 class Person
   attr_accessor :age, :birthyear, :name
   def initialize(name = "Karl", surname = "Karlsson", age = 0)
