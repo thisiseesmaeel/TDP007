@@ -4,6 +4,7 @@ require 'test/unit'
 class Seminarie1_Test < Test::Unit::TestCase
   def test_fullname
     assert_equal("Safwat Ismail", PersonName.new("Ismail", "Safwat").fullname)
+    assert_equal("Sikh Ahmed", PersonName.new("Ahmed", "Sikh").fullname)
   end
 
   def test_fullname=
