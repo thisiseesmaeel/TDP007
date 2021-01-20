@@ -3,7 +3,7 @@ require 'date'
 
 #U5
 class PersonName
-  attr_accessor :name, :surname
+  attr_accessor(:name, :surname)
   def initialize(name, surname)
     @name = name
     @surname = surname
@@ -19,7 +19,7 @@ end
 
 #U6
 class Person
-  attr_accessor :age, :birthyear, :name
+  attr_accessor(:age, :birthyear, :name)
   def initialize(name, surname, age)
     @age = age
     @birthyear = DateTime.now.to_date.year - age
