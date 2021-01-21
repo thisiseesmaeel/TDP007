@@ -1,0 +1,65 @@
+\documentclass{TDP007mall}
+\usepackage[utf8]{inputenc}
+\usepackage[swedish]{babel}
+\usepackage{verbatim} 
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\newcommand{\version}{Version 1.0}
+\author{Daniel Huber, \url{danhu849@student.liu.se}\\
+  Theodore Nilsson, \url{theni230@student.liu.se}}
+\title{Utvecklarblogg:\\Seminarieuppgift 1}
+\date{2021-01-20}
+\rhead{Daniel Huber\\
+Theodore Nilsson}
+
+
+
+\begin{document}
+\projectpage
+\section*{Revisionshistorik}
+\begin{table}[!h]
+\begin{tabularx}{\linewidth}{|l|X|l|}
+\hline
+Ver. & Revisionsbeskrivning & Datum \\\hline
+1.0 & Utvecklarblogg Seminarie 1 TDP007 & 200121 \\\hline
+\end{tabularx}
+\end{table}
+
+  
+    
+
+
+\begin{lstlisting}[language=Ruby]
+for i in (0..tags_arr.length-1) do
+    assert_equal( tags_arr[i].class, Array )
+    assert_equal( tags_arr[i][0].class, String )
+end
+\end{lstlisting}
+\end{document}
