@@ -15,6 +15,8 @@ class MyCalenderClass
   end
 end
 
+
+## FUNCTION FOR MATCHING THE WANTED ATTRIBUTES IN THE FILE.
 def find_all_info
   doc = REXML::Document.new(File.open"events.html")
   events_list = Array.new
