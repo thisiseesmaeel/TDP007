@@ -33,7 +33,7 @@ def find_all_info
   events_list.length.times do |event|
     events_list[event].print_all_info
   end
-
+  return events_list
 end
 
 find_all_info()
