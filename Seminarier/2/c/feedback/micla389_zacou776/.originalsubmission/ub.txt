@@ -1,0 +1,27 @@
+Uppgift 1
+Lösningen utformades utifrån Regex-koden som skrevs innan någon kod var implementerad. Till en början var det mycket ful-kod, detta förenklades med funktioner och användning av Ruby-bibloteket.
+
+Regexkoden för fotbollsresultatet var /\d+\.\s(\w+).+?(\d+)\s+-\s+(\d+)/, kollar efter matchningar som börjar med en eller flera siffror, en "." och ett tomrum (\d+\.\s), för att sedan fånga upp ett lagnamn som läses in ((\w+)). Inläsningen sker fram tills en annan karaktär som följs av data som ignoreras (.+), tills en eller fler siffror (\d) fångas upp och läses in som antalet mål ((\d+)). Detta följs av ett okänt antal tomrum med ett "-" i mitten (\s+-\s+) och slutligen läses antalet insläppta mål in ((\d+)).
+
+För vädret användes regexkoden var /^\s+(\d+)\s+(\d+)\s+(\d+)/. Den kollade efter matchingar i början av raden (^), där REGEX börja leta efter ett antal tomrum (\s+), fram tills dagnummret hittas och fångas ((\d+)). Vilket följs av tomrum (\s+) tills den minsta uppmätta temperaturen fångas upp ((\d+)), vilket följs av tomrum (\s+) och slutligen fångas den högsta temperaturen upp ((\d+)).
+
+Regex-resultatet läses ut på detta sätt: En matchning sparas som en hash där namnet på laget eller nummret på dagen sparas ner som nyckel till värdet som är temperaturskillnaden. Varje hash sparas i en array som sorterar de med värdet närmast 0 först, och längst ifrån sist. Med andra ord en absolutbelopp-sortering. Detta returneras till huvudprogrammet, som lägger till värderna i en sträng för utskrift.
+
+När utskriften baserad på de sorterade matriserna är färdigbygd, skrivs den ut och returneras till testningen (eller huvudprogrammet där processen avslutas). Ursprungligen skulle det vara en löpande utskrift under programmets gång som jämfördes med en fördefinierad "capture_output", dock fungerade metoden inte, därför används istället en sträng för jämförelse. Matriserna programmet testas mot är fördefinierade och manuellt sorterade (även lite korrigerade utefter hur ruby sorterar mot nycklar och positiva respektive negativa värden).
+
+
+Uppgift 2
+
+Vi kände att det enklaste sättet att leta i texten var att använda en DOM-parser med XPath. För att spara Event objekten används en array som vi sedan itererar igenom för att skriva ut resultatet.
+
+Istället för att sålla ut alla indivituella attribut till Event objectet lät vi Event klassen hantera det i konstruktorn. När vi har hittat ett vevent skapas ett nytt event med elementet och de sökord som behövs. För att göra klassen så generell som möjligt låter vi slutanvändaren bestämma vilka sökord som ska filtreras på istället för att hårdkoda detta. Sökorden är dessutom valfria och utan dem söks det på en tom sträng.
+
+Här stötte vi på det första problemet, då vi inte kom på något sätt att fortsätta filtrera ett element på saker. Detta löstes genom att använda to_s() för att konvertera elementet till en sträng och göra ett nytt REXML dokument utifrån det. Nu är roten första elementet i det redan filtrerade elementet.
+
+Detta skickas med till funktionen find_text tillsammans med sökordet som ska letas efter.
+
+Nästa problem var att göra denna funktionen generell för alla attribut. Eftersom de flesta innehöll text direkt i elementet funkade det bra för dem, men undantaget description har sin text inom en <p>. I slutändan fixade vi det genom att kolla om texten är tom och i så fall göra en ny filtrering ett steg ner.
+
+Detta löste det problemet men är fortfarande inte säkrat för djupare element. Man skulle kunne implementera en while loop som lägger till /* för varje runda för att gå djupare, men problemet blir att veta när man ska sluta. Kanske med en for loop som kör size() gånger
+
+Under arbetet testades programmed successivt med utskrifter istället för testprogrammet då detta var enklare för uppgiften. Testerna skrevs efteråt så det finns säkert fall att lägga till. 

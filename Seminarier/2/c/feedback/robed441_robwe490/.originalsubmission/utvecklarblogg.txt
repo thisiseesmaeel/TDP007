@@ -1,0 +1,29 @@
+Uppgift 1:
+Vi har använt i princip samma kod i båda delarna av uppgiften. Överlag var det väldigt lätt att dela kod, eftersom
+när man abstraherar uppgifterna blir de nästan identiska. Man söker rader i en tabell, som innehåller tre kolumner:
+ett namn och två värden. Vi har valt att använda structs för att lagra informationen i dessa rader. Structs är 
+ett smidigt sätt att lagra data som hör ihop utan att definera en ny klass för dem. Vi skapar den innuti Table-klassens
+räckvidd.
+Skriver man kod med det i åtanke stöter man egentligen bara på ett problem, som vi eventuellt gjorde:
+Det problem som uppstod var att datatypen som skulle jämföras ändrades mellan delarna. Mål mäts självklart med heltal,
+medan temperatur kan lämpligast representeras av flyttal, och eftersom exempeldatan innehåll reella tal blev det här ett måste.
+En smidig egenskap hos Ruby är Object.send()-metoden. Den låter oss använda symboler för att dynamiskt anropa ett objekts metoder.
+Denna typ av dynamisk kodanropning påminner om Pythons eval()-funktion, som tar in ett arbiträrt uttryck som en sträng, och sedan
+utvärderar den.
+I detta fall använder vi det för att konvertera det initiala String-objektet som returneras från regex-matchningen till ett annat av
+godtycklig typ. I vår kod kan användaren därför passera :to_i och :to_f för att säkerställa att datan lagras som heltal respektive flyttal.
+Denna lösning gjorde att vi kunde lösa båda delarna med exakt samma kod.
+
+Genom att överlagra to_s() kan vi direkt anropa puts() för att visa relevant information.
+
+Uppgift 2:
+Vi använder REXML för att skapa ett DOM-objekt. Vi valde REXML eftersom det var biblioteket som demonstrerades på
+föreläsningarna. Att använda DOM-objekt över att sekvensiellt läsa informationen blir ett naturligt val av två anledningar:
+Dels är dokumenten vi läser så små att vi inte behöver ta hänsyn till den ökade minnesanvändningen som kommer med att läsa in
+hela dokument till minne, dels behöver vi DOM-objekt för att extrahera information med XPath-uttryck.
+
+Det största problemet vi stötte på i denna uppgift var hur man väljer noder med XPath. Att leta i hela dokumentet med "//"-uttrycket
+gick väldigt lätt, men när vi ville utgå ifrån en viss nod och bara leta bland dess barn-noder blev det mer struligt.
+Först testade vi ".", som väljer nuvarande nod. Problemet som uppstår med det är just att uttrycket endast väljer den noden.
+För att uppnå det resultat vi egentligen sökte kan dessa uttryck kombineras till ".//". Detta väljer både nuvarande nod
+och alla dess barn.

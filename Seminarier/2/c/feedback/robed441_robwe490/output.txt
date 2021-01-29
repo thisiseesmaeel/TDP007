@@ -1,0 +1,39 @@
+name: The Dark Carnival - 101.9FM
+date: 2008-01-04 10:00pm EST
+location: Kingston, Ontario
+description: "The Dark Carnival is two hours of spooky goodness. Every week, expect the best goth, industrial, and other dark music, as well as news and reviews from the wider world of goth culture. Embrace the darkness! Fridays, from 10 PM until the Witching Hour."
+
+name: Sinister Sundays
+date: 2008-01-06
+location: The Bohemian, 248 Front Street, Belleville, Ontario
+description: Gothic, Industrial, Dark Alternative w/ DJ LunaSlave
+
+name: The Dark Carnival - 101.9FM
+date: 2008-01-11 10:00pm EST
+location: Kingston, Ontario
+description: "The Dark Carnival is two hours of spooky goodness. Every week, expect the best goth, industrial, and other dark music, as well as news and reviews from the wider world of goth culture. Embrace the darkness! Fridays, from 10 PM until the Witching Hour."
+
+name: Sinister Sundays
+date: 2008-01-13
+location: The Bohemian, 248 Front Street, Belleville, Ontario
+description: Gothic, Industrial, Dark Alternative w/ DJ LunaSlave
+
+name: The Dark Carnival - 101.9FM
+date: 2008-01-18 10:00pm EST
+location: Kingston, Ontario
+description: "The Dark Carnival is two hours of spooky goodness. Every week, expect the best goth, industrial, and other dark music, as well as news and reviews from the wider world of goth culture. Embrace the darkness! Fridays, from 10 PM until the Witching Hour."
+
+name: Sinister Sundays
+date: 2008-01-20
+location: The Bohemian, 248 Front Street, Belleville, Ontario
+description: Gothic, Industrial, Dark Alternative w/ DJ LunaSlave
+
+name: The Dark Carnival - 101.9FM
+date: 2008-01-25 10:00pm EST
+location: Kingston, Ontario
+description: "The Dark Carnival is two hours of spooky goodness. Every week, expect the best goth, industrial, and other dark music, as well as news and reviews from the wider world of goth culture. Embrace the darkness! Fridays, from 10 PM until the Witching Hour."
+
+name: Sinister Sundays
+date: 2008-01-27
+location: The Bohemian, 248 Front Street, Belleville, Ontario
+description: Gothic, Industrial, Dark Alternative w/ DJ LunaSlave
