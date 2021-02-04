@@ -1,0 +1,41 @@
+Avsnitt 1: Iteratorer
+Uppgift 1:
+Inuti funktionen n_times behövs någon form av loop. Olika loopar skulle kunna användas, men eftersom antalet iterationer är känt är en while loop mindre lämplig och eftersom den specifika iterationen inte spelar någon roll är det inte nödvändigt med en range eller for loop som definierar en variabel.
+Vi valde att använda Integer klassens times() metod, vilket utför kod ett specifikt antal gånger. För varje gång körs blocket genom att använda call() metoden.
+
+Uppgift 2:
+20! = 2432902008176640000
+inject() är en medlemsfunktion i klassen range. För att använda funktionen behövs en range att använda den på. Rangen vi behöver är 1 till 20 i.e (1..20). inject() tar ett block som argument. För varje element i den range funktionen kallades på utförs blocket. Till blocket skickas ett ackumulerat värde och elementet som argument. Sedan returneras det ackumulerade värdet. För att beräkna fakulteten multipliceras det ackumulerade värdet med elementet för varje element.
+
+Avsnitt 2: Åtkomstfunktioner
+När man har ett tomt namn blir namnet till ett mellanslag och när man saknar efternamn läggs ett mellanslag till efter första namnet. Detta beror på hur @name och @surname slås ihop när fullname returneras. Detta skulle kunna fixas med kontroller men är inte relevant för uppgifterna. 
+Uppgift 5:
+För att ändra hela namnet används en setter fullname=. Strängen splittas på första blanksteget, med begränsningen 2. Detta betyder att strängen delas i maximalt 2 delar. @name sätts till första delen och @surname till andra delen. Detta eftersom man generellt har ett tilltalsnamn och kan ha flera efternamn.
+
+Uppgift 6:
+Klassen Person har tre attribut, namn, ålder och födelseår. Eftersom ålder och födelseår är helt beroende av varandra behöver bara den ena sparas av objektet och det andra kan vara virtuellt. Eftersom födelseåret är det som är mer konstant valde vi att spera det och göra åldern virtuell. Åldern från födelseår och vice vers räknas ut ifrån DateTime.now.year vilket returnerar det nuvarande året.
+
+Avsnitt 3: Utökning av existerande klasser
+Uppgift 8:
+Alla klasser kan utökas med nya metoder. För att göra det öppnar man klassen och skriver en ny metod. Ändringen gäller bara där man har importerat ändringen. I klassen har vi lagt till metoden acronym. Först splittas strängen till en array med varje ord. Sedan körs each med ett block på varje element. I blocket konkateneras akronymet med den första bokstaven i elementet, vilket är gjort till en versal. Funktionen returnerar akronymet som har genererats.
+
+Först använde vi en loop för att hitta första bokstaven i varje ord, men kom sedan på att det fanns medlemsfunktioner man kunde använda för att göra koden lite snyggare.
+
+Uppgift 9:
+Att flytta ett värde ett snäpp till vänster i en array är dessamma som att sätta in första elementet sist och ta bort originalet. Värdet av det första elementet returneras samtidigt som det tas bort, därför kan man sätta in värdet sist i arrayen. För att rätt array:en ska returneras måste metodens returnering definieras ("self" pekar på själv).
+
+Avsnitt 4: Reguljära uttryck
+Uppgift 10:
+Uppgiften letar efter matchningar mot angiven regex, endast första matchningen returneras, eftersom det endast finns ett namn i detta fall. Regexkoden är definierad för att hitta vilket engelskt namn som helst, efter vilket engelskt ord som helst följt av ett kolon (":").
+
+I matchdatan får man även med resultatet av varje matchgrupp. Det som delmatchas inom varje parantespar. Vi trodde att det var något fel på regex uttrycket, men det var det inte. Detta visade sig egentligen inte vara intressant för uppgiften, därför att det sökta namnet skulle alltid bli det första elementet i resultatets array oavsett övriga matchningsresultat. Det var ändå något som vi blev förbryllade över och hade svårt att hitta info om. 
+
+Uppgift 11:
+HTML-dokumentet skickas in som en sträng till metoden där den blir igenomsökt av angiven regex. Resultatet kommer sammanlagt returneras som "Enumerator", därför måste det konverteras till en array i huvudprogrammet. För att unika taggar ska returneras används metoden ".uniq" som rensar alla element det är mer än en av.
+
+Regexkoden är konstruerad för att kontolera karaktärerna före och efter resultatet. "?<=" kollar om föregående karaktär och "?=" kollar nuvarande karaktär stämmer mot definierat regex. Exempelvis "(?<=<)(?!\/)" kollar om den föregående karaktären är "<" och nuvarande inte är "/" (för att undvika sluttaggar). Om definierat regex kollas nästa karaktärer mot "(.*?)" som tyder att resultatet ska läsas in till "((?=\s)|(?=>))" antigen ett mellanrum eller tills karaktären ">" läses in.
+
+Notera att i testiningen används URI.open(), istället för open(), eftersom Ruby anser numera att URI.open() är säkrare och mer korrekt. (Ruby vägrar hämta HTML-dokument från nätet med vanliga open()).
+
+Det finns tyvärr en "bugg" med koden när www.google.com söks igenom av regexkoden. När HTML-dokumentet hämtas inkluderas Java-scriptet med i strängen. I Java-scriptet finns symbolen "<" som tolkas som en tagg, ett specialfall som är svårt att definiera för att regex ska undvika.
+

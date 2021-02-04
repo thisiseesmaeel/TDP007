@@ -1,0 +1,24 @@
+Lära sig nytt språk (Ruby):
+Det kändes relativt enkelt att komma igång med uppgifterna eftersom att Ruby är väldigt intuitivt när det kommer till både syntax och struktur. Språket är även väldigt likt python vilket gjorde det enklare att gissa sig till lösningar.
+
+Avsnitt 1:
+I avsnitt ett valde vi att lösa uppgift två och tre. För att lösa uppgift två användes inject som är medlemsfunktionen i integer. I blocket som skickas med används multi som är produkten av föregående tal och n som är nuvarande tal som itereras. Genom att multiplicera multi och n kommer resultatet bli produkten av alla tal multiplicerade med varandra.
+
+Uppgift tre använde vi oss av each för att iterera över alla element i arr. I en if-sats blir variabeln longest lika med ordet om ordet är längre än longest. Longest returneras i slutet vilket då är det längsta ordet i arrayen.
+
+Avsnitt 3:
+I avsnitt tre valde vi att lösa uppgift sju och nio. För att lösa uppgift sju behövde vi först lista ut hur vi lägger till funktionalitet i en klass som vi inte skrivit själva vilket visade sig vara väldigt enkelt. Genom att namnge klassen till Integer kunde vi definiera ny funktionalitet i klassen. Funktionen fib har en if-sats som först kollar om talet är ett eller två (special case) för att sedan returnera (n-1 + n-2). För att räkna ut dessa användes rekursion.
+
+I uppgift nio lägger vi till funktionen rotate_left i Array på samma sätt som i uppgift sju. genom att ta in en variabel n så kan funktionen times användas för att iterera n antal gånger. För att sortera enligt uppgiften användes funktionerna push och delete_at.
+
+Uppgift 5
+Denna uppgiften var rätt så självgående eftersom klasstrukturen och uppgiftens mål är lika sånt vi har stött på i python eller c++. Utifrån det skapade vi en konstruktor som tar in namn och efternamn (detta nämdes inte i uppgiften, men kändes passande), och skapade en getter som kombinerar för- och efternamn till ett fullt namn, samt en setter som m.h.a split delar upp den inmatade strängen i för- och efternamn.
+
+Uppgift 6
+Här introducerades Date-modulen, vilket var nytt för oss, och användes för att automatiskt få nuvarande år vid uträkning av ålder och födelseår. På så sätt slipper vi hårdkoda året 2021. Samtliga argument till Person gjordes valfria med tomma strängar för namnen och 0 för åldern som default-värden. Konstruktorn från PersonName i uppgift 5 användes i konstruktorn för Person för att smidigt skapa ett fullt namn. För hämtning och ändring av namn efter det används PersonNames getter/setter. Både ålder och födelseår kan ändras och den ena uppdaterar automatiskt den andra med hjälp av Date-modulen. 
+
+Uppgift 10
+Regex är välbekant vid detta laget vilket gjorde denna uppgiften enkel. Strängen letas igenom efter kolontecknet och det som står där efter (minus eventuellt mellanslag) tas med. Det som står innan kolontecknet filtreras bort oavsett om det är stora eller små bokstäver.
+
+Uppgift 12
+Här krävdes lite mer avancerad regex än i uppgift 10. Först och främst måste strängen inehålla tre stora bokstäver följt av tre siffror, andra kombinationer av siffror och bokstäver ignoreras. Registreringsnummret kan även plockas ut om det följs av t.ex en punkt eller utropstecken. Om registreringsnummret uppfyller det kravet, plus att det inte inehåller de ogiltliga bokstäverna I, V eller Q, returneras det. Annars returneras false.

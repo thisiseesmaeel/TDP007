@@ -8,11 +8,9 @@ class PersonName
     @name = name
     @surname = surname
   end
-
   def fullname
     "#{@surname} #{@name}"
   end
-  
   def fullname=(str)
     @name = str.split[0]
     @surname = str.split[1]

@@ -1,0 +1,42 @@
+Blogg för 2021-01-19(seminarie 1)
+
+Vi satte oss in i Ruby och löste uppgifterna genom att: 
+Ta del av föreläsningsmaterial.
+Slå upp saker i kursboken.
+Diskutera med kurskamrater.
+
+Rent spontant verkar block-strukturen vara något som skiljer ruby från tidigare
+språk vi använt. Vi är dock inte säkra på vad exakt som skiljer dem från
+lambdafunktioner.
+
+Vi lade en del tid på att sätta upp vår utvecklingsmiljö.
+
+Vi bestämde oss för att jobba mer eller mindre uppifrån och nedåt med
+uppgifterna.
+
+Uppgift 1
+Inga större problem att lösa då liknande exempel gavs i föreläsningarna. Vi
+stötte på en del problem med att lista ut hur testmodulen fungerade.
+
+Uppgift 2
+Den största utmaningen den här uppgiften var att hitta rätt dokumentation, och
+att lista ut syntaxen på ranges. En skillnad vi märkte här mot vissa andra språk
+är att man kan returnera data av olika datatyper i en funktion.
+
+Uppgift 5
+Hur getters och setters fungerar i klasser verkar vara relativt likt hur de
+fungerade i c++.
+
+Uppgift 6
+Vi hade till en början problem med att få testcasen att fungera. Detta löstes
+senare genom att lägga till getters i klassen Person.
+
+Uppgift 7
+Först missförstod vi att det skulle vara en medlemsfunktion i klassen Integer.
+När vi hade åtgärdat det trodde vi att det fortfarande inte fungerade för att
+fibonacci-tal 5 blev 5.
+Efter för mycket funderande insåg vi att det faktiskt skulle bli 5 och inget var fel. 
+
+Uppgift 10+12
+Repetition av reguljära uttryck var välbehövlig.
+Vi känner att det är en extremt bra teknik att behärska då det används så brett.

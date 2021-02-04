@@ -1,0 +1,41 @@
+Avsnitt 1:
+Att programmera i Ruby känns väldigt naturligt eftersom allting är objekt. I vår uppfattning känns Ruby likt python. Det är mer förlåtande och behöver inte vara lika explicit som t.ex. C++.  När något går fel i ruby ger terminalen fel som är mycket lättare att förstå jämfört med C++ fel-meddelanden. Nytt för oss är att man kan ha block av kod som indata i en funktion på det sättet som ruby implementerar det.
+
+På första uppgiften i  avsnitt ett hade vi problem med att hitta lösningar till att testa terminal utskrifter. Detta var för att de testfall vi hade jämförde returvärdet från funktionen med ett angivet värde. Detta är okej vanligtvis, men vårt returvärde var ej en sträng eftersom vi endast använde strängen i ett specifikt kodblock som skrev ut till terminalen. Det returvärde vi fick var ett heltal. 
+
+Efter diskussion med kursassisten bestämde vi oss för att testa funktionen genom att placera strängen i en array och sedan jämföra längden på arrayen. Om funktionen itereras en gång lär storleken på arrayen vara ett.  
+
+Andra uppgiften (uppgift 3) vi gjorde var lättare då det liknade typisk problemlösning som uppstod i python-programmering i TDP002. Vi itererade igenom ord för ord i arrayen och jämförde det längsta ordet som hade förekommit. Om ordet var längre byttes det längsta (nu inte längst längre) ordet ut med det nya. 
+
+Att göra testfall för denna uppgift var lättare då det fanns ett returvärde man faktiskt kunde jämföra med. Vi har fyra assertions för testfallet, ett som kollar angivna exemplet, ett fall där det sista ordet är det längsta, ett där det endast finns ett ord och slutligen ett fall där det längsta ordet befinner sig i mitten. Vi anser att det ej krävs testfall för tomma arrayer då man bör anta att det finns ord i arrayen (uppgiften nämner inget annat). Det finns inte heller testfall för arrayer med värden som ej är av typen sträng. 
+
+Avsnitt 2:
+I vårt testfall blev vi förvånade när vi instansierade PersonName klassen. Instansieringen var utanför funktionen som testar våra “assertions” vilket ledde till att objektet var utanför scopet. 
+
+I uppgift sex stötte vi på funderingen om hur “void”-funktioner fungerar. Som vi har lärt oss returnerar alltid en funktion i ruby ett värde, men hur funkar det om man ej vill att ett värde skall returneras (typiskt för setters)?
+
+Vi vill också nämna att vi vet att publika variabler är dålig praxis, men vi har några resonemang till varför vi använder oss av attr_reader. För det första är det helt enkelt snabbare att skriva än två getter-funktioner. För det andra vet vi att vi inte kommer redigera värdena innan de returneras till användaren. Slutligen är det alltid kul att testa nytt och därmed implementerar vi det.
+
+Det finns inga rimlighets-kontroller för ålder eller andra variabler då det ej anges vara ett krav i uppgiften. 
+
+
+
+Avsnitt 3:
+Vi var först osäkra på hur vi skulle utföra uppgift sju. Detta eftersom vi var inte helt säkra på hur fibonaccis talserie fungerade, men efter lite snabba sökningar på google var vi säkra på hur vi skulle göra. Talet representerar indexvärdet på talserien.  Ett annat problem vi stötte på var vi behövde få tag på heltalets värde i sin egna klass. Detta gjorde vi med “self”. Vi tog reda på detta via stack overflow. 
+
+Avsnitt 4:
+Uppgift 10 tolkade vi på följande sätt. Om det står “USERNAME: “ i stora eller små bokstäver kommer alla sammanhängande små och stora bokstäver därefter identifieras som ett användarnamn. Det skall ej ingå andra tecken. Vi höll användarnamnen inom ett intervall på tre till tolv bokstäver, mest för att det kändes logiskt. 
+
+Vi bestämde oss för att det endast skall finnas bokstäver i användarnamnet, vi är medvetna om att det kanske inte var exakt det uppgiften förväntade sig, men det var så vi tolkade det från början. 
+
+Den sista uppgiften vi gjorde var uppgift 11. I vår uppfattning skall man läsa in en fil via webbläsaren och sedan hitta alla tag-names. Det skall ej finnas dubbletter av tag-namnen i den slutliga arrayen (alltså max ett av varje namn). 
+
+Det är ganska svårt att skriva testfall för den här uppgiften eftersom att det är svårt att veta hur många samt vilka taggar som ingår i hemsidan. VI försökte lösa det på bästa sätt genom att redovisa några unika exempel samt räkna antalet unika namn på en hemsida i våra testfall. 
+
+Slutligen vill vi påstå att det har varit ganska lätt att lära sig Ruby än så länge. Vi har inte stött på mycket avancerade tekniker vilket också har gjort att vi lärt oss snabbt. Något vi märkte var att det finns otroligt många bra medlemsfunktioner till de inbyggda klasserna vilket gör det lätt att programmera. Vi tycker också det är intressant att många av de medlemsfunktioner som man använder sig av kan man avsluta med ett frågetecken vilket då returnerar en bool.
+
+
+
+
+
+

@@ -1,0 +1,40 @@
+Seminarie 1
+Vi har gjort labb 1. Ruby var ganska lätt att sätta sig in i.
+Språket påminner väldigt mycket om Python, med några syntaxändringar.
+När vi kände oss osäkra kollade vi på kursexemplerna eller den officiella Ruby-dokumentationen.
+Vi hittade en bugg i regnr-funktionen när vi skrev våra tester, som grundade sig i att vi returnerade fel
+typ av objekt. Vi trodde vi returnerade en sträng, men det var istället ett MatchData-objekt.
+Då Ruby är löst typat är det lätt att göra sådana misstag.
+
+En intressant konstruktion i Ruby är att man kan lägga till funktioner till existerande klasser.
+Iteratorer i Ruby påminner om högre ordningens funktioner och lambda-funktioner i
+andra språk, t.ex. C++ och Python.
+Vi tycker det är svårt att bedömma hur användbara dessa konstruktioner är i Ruby utan mer erfarenhet,
+men utifrån dessa uppgifter verkar de vara användbara. Vi misstänker dock att större projekt
+riskerar att tappa tydlighet om existerande klasser defineras på flera olika ställen.
+
+Vi lade ner två labbpass på första labben. Under det första löste vi uppgifterna, och det andra
+skrev vi enhetstester och utvecklarbloggen. I framtiden kan det vara fördelaktigt att skriva
+enhetstesterna först. Då kan man direkt se om koden når specifikationen och man slipper
+skriva till terminalen för att testa koden medan man skriver.
+
+Alla delmoment i uppgiften var förhållandevis lätta. Vi lade antagligen mest tid på Fibonacci-uppgiften,
+men även den gick relativt fort att klara.
+
+Uppgifter:
+1. Vi använde en for-loop som går från 1 till n och anropar kod-blocket.
+3. Vi itererar över listan och sparar den längsta strängen i listan. Om flera strängar har samma längd
+returneras den första.
+5. För att separera för- och efternamn används split-funktionen i String.
+6. DateTime används för att beräkna korrekt ålder och födelseår. Funktionen calc_birthyear används bara
+internt och är därför privat.
+7. Vi valde att lösa Fibonacci-uppgiften rekursivt. Det kändes som en enkel generell lösning.
+En nackdel med vår implementation är att den gör många funktionsanrop, vilket kräver
+mycket prestanda, särskilt vid stora n. Vi ansåg att lösningen var elegant och att prestanda
+inte var viktigt för den här uppgiften.
+8. Vi använder split och skriver första tecknet till en ny sträng, som transformeras till versaler
+och returneras.
+10. Vi använder ett regex med två grupper och plockar ut den andra, som innehåller användarnamnet
+vid en match.
+12. Vi använder ett regex för att matcha på ett godkänt registreringsnummer. Vid en match
+returneras registreringsnummret från MatchData-objektet, annars false.

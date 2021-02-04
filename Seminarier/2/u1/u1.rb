@@ -25,7 +25,6 @@ puts
 
 ## FUNCTION FOR PRINTING THE TEAM WHICH HAS THE LEAST GOAL DIFFERENCE.
 def least_goal_diff(sorted_list_teams)
-  sorted_list_teams.sort_by! { |index| index[3] }
   least_goal_team = puts "The least goal difference is: " + sorted_list_teams[0][0].to_s + " with difference of " + sorted_list_teams[0][3].to_s + " point/s."
   return least_goal_team
 end

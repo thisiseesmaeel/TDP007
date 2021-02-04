@@ -1,0 +1,66 @@
+Seminarie 1:
+
+Hur vi gjorde, uppgift för uppgift:
+
+Uppgift 2: 
+Vi började med "1" som argument för inject eftersom vi arbetade med ett resultat som ökade 
+genom multiplikation. Det tog oss en stund att förstå varför vårt svar alltid blev 0 då vi inte hade 
+läst på om vad vi använde så mycket utan tog väldigt stor hjälp av föreläsningsanteckningarna.
+Så fort vi började titta närmare på vad det vi använde oss av egentligen gjorde så insåg vi att inject behöver
+startvärde 1 för att vårt "result" ska växa ifrån 0. Något som inte behövs för till exempel addition, från 
+våra anteckningar. Det inject gör i vårt fall är att den multplicerar number med nästa tal i listan, sparar ner 
+det i result och sedan vid nästa iteration tar den nästa nummer i listan igen och multplicerar det med result.
+
+Uppgift 3:
+Vi försökte lösa uppgiften med ungefär en "return max", men i ett av testfallen visade sig detta
+inte fungera. Det var när arrayen innehöll: ["three", "five", "eleven", "sixteen"].
+Vi blev smått ställda över att vår lösning fungerat exakt som förväntat på de andra testerna, 
+varav flera var väldigt lika det här testfallet. 
+När vi stötte på denna motgång valde vi inte att fördjupa oss om hur max-funktionen fungerade för en array eller liknadnde,
+utan valde istället att hitta en ny metod att lösa problemet. Vi använde oss till slut av max_by som sorterar värdena efter givet block som skickas med funktionen.
+
+Uppgift 5:
+Vi funderade en del kring hur vi skulle tolka denna uppgift angående eventuella namn med flera för- eller efternamn.
+Vi kom fram till att det enda rimliga i denna uppgift var att bara spara ett förnamn och ett efternamn då det skulle vara näst intill
+omöjligt att med fler namn avgöra vilka som är för-och efternamn. En sak vi däremot såg till var att efternamnet alltid blev det sista namnet
+som skickades in med "fullname=", alltså inte bara det andra namnet i namnet som vi från början hade gjort. 
+
+Uppgift 6:
+Vår tolkning av denna uppgift, är att en person skapas med ett klassobjekt "PersonName" och en ålder. Att de var valfria tolkade vi som att man 
+ska kunna välja vilket namn, samt vilken ålder man vill skapa personen med. För att se till så att ålder och födelseår alltid stämmer överens så
+subtraherar vi åldern från nuvarande årtal. Vi har även gjort setters för att kunna ändra både år och födelseår där vi jobbar med samma princip.
+För att se till så att nuvarande år ska vara korrekt, oavsett vilket år du vill använda klassen, använder vi oss av klassen "Date" för att hämta 
+nuvarande år.
+
+Uppgift 7:
+Här fick vi göra lite sökningar på google för att komma fram till hur man utökar existerande klasser. När vi sett hur det fungerade så testade vi
+oss fram för att skapa en funktion för fibbonacci, vi hade en ide om hur det skulle fungera men att vi skulle göra loopen "self-1" gånger kom vi fram 
+till via testning.
+
+Uppgift 8:
+Vi skrev mer eller mindre uppgiften rakt av från topp till botten ungefär som om vi hade gjort det i python och det funkade. 
+
+Uppgift 10:
+Problemet vi stötte på med denna uppgift var först att förstå vad match retunerade(strig kontra match group), det andra problemet var att lösa hanteringen av att 
+inte hitta någon matchning. Regex-uttrycker löste vi med hjälp av "Rubular.com". Vi skapar två matchgrupper, den första "USERNAME: " (versaler och gemener),
+den andra är order som kommer efter "USERNAME: ", sedan returnerar vi den andra matchgruppen vid matchning. Vi hanterar ingen matchning med if sats och 
+villkoret "matched != nil". 
+
+Uppgift 11:
+Här anävnde vi oss utav ett regex-uttryck vi skapade för en liknande uppgift i TDP001. Vi googlade oss fram till "scan" som visade sig spara ner alla
+matchningar i en lista. Sedan läste vi oss även till att "uniq" skapar en kopia av listan och sparar bara ner varje unik sträng en gång till nya listan.
+
+Tester:
+Vi har försökt att testa "extremfall", men ändå hålla oss till rimliga inparametrar. Tar en funktion till exempel in ett namn kommer vi inte ge den ett 
+flyttal att arbeta med. Hade vi behövt hantera detta ansåg vi att det isåfall borde stått i uppgifterna.
+Vi använde assert_equal istället för "==" då det var, som vi förstod det, en strängare kontroll. Vi stötte aldrig på problem med att något vi tyckte borde 
+godkännas inte blev det, eller vice versa, så vi såg aldrig anledning att använda något annat än det strängaste alternativet.
+
+Allmäna Ruby reflektioner:
+- Vi har i ganska stor utsträckning valt att använda oss av lösningsmetoder likt det vi hade gjort i python då vi är vana vid det. 
+- Ruby har en väldigt enkel syntax och det har varit lätt att vänja sig vid att skriva Ruby-kod. I detta fall känns det som att vår Pythonbakgrund varit till större
+  hjälp än vår C++-bakgrund, något som vi blev lite förvånade över. 
+- Flera tekniker, exempelvis do N.times, är fiffiga. Det är säkert saker som är väldigt bra att använda sig av, inte minst för att det textmässigt blir mindre kod. 
+  Men i nuläget ser vi inte några större fördelar med tekniker som dessa då de lätt kan ersättas av tekniker vi haft med oss sedan tidigare. I N.times fall en vanlig for-loop.
+- Syntaxen vi har försökt hålla oss till liknanar den syntax vi är vana med från python och C++ till stor del, även om detta kanske inte är
+  "standard-syntax" för Ruby.

@@ -1,0 +1,26 @@
+1. Ovant med end. Jag missar det konstant. Behövde lägga till ett yield på slutet för att få rätt output. While loop inte optimalt.
+"Did you mean? @n". Skönt att den gissar rätt när man skrivit fel.
+Det känns lite underligt att använda “do” I en loop.
+Yield för att hämta block. Jag testade först call men den måste vara kopplad till något.
+
+3. Det var enkelt att jämföra strängar I en lista. Det går säkert att kapa raden där jag sätter @longest till första elementet.
+Jag blev förvirrad över outputen I exemplen men efter samtal med assistent förstod jag att det blir så när koden körs iterativt.
+Även här behövde jag kalla på outputen efter loopen.
+
+5. Många obekanta ord att kolla upp. Skönt att kursboken har många tydliga exempel.
+Lite osäker på om för- och efternamn ska finnas med i konstruktorn men det kändes rimligast. Skönt att hela namnet kunde kallas på genom att addera namnen med ett mellanslag i mitten.
+Jag blev förvirrad när settern “full_name” skulle skapas. Tänkte att den skulle ingå I gettern på något vis men allt löste sig. Regex hade nog funkat bra istället för split.
+
+6. Än en gång osäker över vad som ska inkluderas I konstruktorn. Många saker som ska sättas. Jag ville definiera variabeln year utanför klassen men det gick inte. Jag tolkade det först som att Date skulle kunna hämta dagens datum men jag hittade ingen sån metod.
+
+7. Här hade vi kunnat få ett exempel. Själva lösningen var enkel men det var svårt att hitta information om hur en existerande klass kunde utökas.
+Jag behövde först kalla på integer med ett tal och sedan fib med ytterligare ett. “Self” löste detta. Koden är omskriven så den använder det.
+
+8. Försökte här använda split på samma sätt som I uppgift 5 men nu funkar det inte? “split(“ “)” gav däremot önskat resultat.
+
+10. Blir förvirrad av “oavsett vad som står på första raden”. Tolkar det som att jag ska plocka ut strängen efter “: “
+
+12. Jag hade velat kombinera mina två regexuttryck. Lite osäker på hur regnummret ska identifieras. Exempelvis skulle XQT7845 tolkas som XQT784 och godkännas, vilket inte är optimalt.
+
+Allmänt: Mycket information tillgängligt online. Likt python och HTML. Nya ord för bekanta saker, exempelvis puts, upcase.
+Testningen var väldigt förvirrande I början men det berodde nog främst på min användning av while loopar som inte har någon inbyggd output. De senare uppgifterna var mycket mer uppenbara hur de skulle testas. En del puts behövde bytas ut mot returns.

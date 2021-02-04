@@ -1,0 +1,26 @@
+#Uppgift 1
+Ruby känns lite som en blandning mellan python och c++: den har garbage collection och lättläst kod men också start- och slut-taggar med end. I helhet då syntaxen är ny blev jag tvungen att googla ganska mycket, men samtidigt finns det förstås saker som känns bekant, som att skriva def foo (från python) och class Foo (från C++). Något som var helt nytt är blockhantering; jag visste inte att yield existerade tills jag hittade den medan jag googlade. Det påminner mig lite om lambda med tanke på utseendet. Något annat som känns väldigt nytt är namngivningen för olika saker (som @n) vilket jag inte gillar så långt då man måste ha det i huvudet.
+
+Att skriva edge cases för denna del var svår då det inte riktigt går att testa prints. Går det att printa -1 gånger? Förmodligen inte. Dock när jag kör koden i interaktivt läge så kan jag se att returvärdet stämmer överrens med körexemplet, så jag tolkar det som att det är ok att skriva så.
+
+#Uppgift 2
+Jag blev tvungen att kolla upp hur man räknar ut fakultet igen... men samtidigt behövde jag också kolla upp hur inject fungerade. Den påminner mig ännu mer om lambda då operationen skrivs och returneras direkt. När det gäller intervall-range 1..20 känns det väldigt smidigt vilket är toppen.
+
+#Uppgift 3
+Medan jag skrev tester såg jag att
+
+longest_string(["apelsin", "banan", "citron"])		funkar
+longest_string ["apelsin", "banan", "citron"]			funkar
+longest_string["apelsin", "banan", "citron"]			funkar inte
+
+och anledningen till att den sista inte funkar är för att det är som att skriva longest_string[0]. Att Ruby inte bryr sig om paranteser ibland är väldigt konstigt. När jag försökte skriva tester funkade inte den mellersta längre då assert() använder paranteser.
+
+För att kunna testa detta var jag också tvungen att returnera resultatet.
+
+#Uppgift 4
+Att skicka in ett block och skriva yield i if-satsen känns precis som att använda en comparator. Jag blev tvungen att googla igen för att inse att yield kunde ta in argument. Jag baserade förstås uppgift 4 på uppgift 3, men för att få den mer generaliserad blev jag tvungen att skriva wanted = array[0], vilket gör att en "edge case" inte funkar, nämnligen att skicka in en tom array.
+
+#Tester
+Först så trodde jag att det bara fanns assert_equal, men det finns massor av olika asserts. Varför behövs det ens så många asserts?
+
+PN

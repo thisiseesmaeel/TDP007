@@ -1,5 +1,5 @@
 # coding: utf-8
-require './u12'
+require './u11'
 require 'test/unit'
 
 class TestRegnr < Test::Unit::TestCase
