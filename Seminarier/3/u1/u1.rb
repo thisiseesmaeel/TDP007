@@ -8,7 +8,7 @@ class Person
         @age = age
         @result = 0
     end
-
+    ## Evaluera strängen i "policy.rb" filen, returnera result
     def evaluate_policy(filename)
         instance_eval(File.read(filename))
         return @result
@@ -27,7 +27,7 @@ class Person
             if post_number[0] == @post_number
                 @result += post_number[1]
             else 
-                @result += 0
+                @result += 0 ## Om postnummer finns inte med i post_number Arrayerna så adderar 0 till result
             end
         end
     end
