@@ -1,0 +1,45 @@
+Seminarie 3
+
+Uppgift 1
+Så som vi tolkade uppgift ett skall ett objekt med vissa lagrade värden kunna köra en funktion som heter evaluate_policy. Funktionen skall läsa in en fil som innehåller ett DSL. Värden lagrade i objektet skall jämföras med värdena i policy-tabellerna, om en matchning uppstår skall objektet få fler poäng. Efteråt kollar programmet om objektet uppnår vissa specifika krav, om krav uppnås kommer poäng-summan multipliceras. Därefter returneras ett värde som beskriver “säkerhetspoängen”. Allt är objektorienterat. 
+
+Vi hade problem med denna uppgift på grund av vår lösning är inte särskilt generell.
+En snyggare lösningar skulle vara att vi inte hårdkodade funktionerna (t.ex. car(), postal() etc ), men istället skapades dessa funktioner automatiskt i bakgrunden med hjälp av användarens dls (vi misstänker att detta skulle göras med method_missing och instance_eval/class_eval). 
+
+Fördelen med en generell lösning skulle vara om “kunden” vill lägga till en ny policy i programmet, då skulle de kunna göra det själva utan att behöva kunna programmera. 
+
+Ett argument man kan dra (ur ett “på riktigt perspektiv”) är uppgift går ut på hantera tabellerna som är angivna i uppgiften. Det ingår alltså inte kunna lägga till fler policys, det finns inga instruktioner för det. Om det vore en kund som bad om ett program som räknade ut poäng baserat på de angivna tabellerna så är uppgiften avklarad (men då kan man också dra argumentet att bättre kod gör kunden “mer än nöjd”, vilket leder till fler framtida jobb). 
+
+Som det ser ut just nu har vi alltså skapat ett program som endast värderar och löser logik för de angivna policys som finns. Om vi har tid över kommer vi titta på en lösning där man kan lägga till nya policys. En generell tanke är att det kan bli väldigt svårt för då måste vi ta reda på om värden skall befinna sig i intervaller eller vara exakta. Det finns mycket att tänka på.
+
+Vi utgår från att användaren skriver in rätt information och därmed har vi inga kontroller för att kolla om information är rätt eller ej. 
+
+
+Uppgift 2:
+
+Vi tyckte det var väldigt svårt att tolka vad uppgiften gick ut på. Det vi förstod var att uppgiften gick ut på att de uttryck som fungerar i ruby skall fungera i vår “parser”. Vi behöver endast ta hänsyn till logiska uttryck som returnerar true eller false. Dessvärre tog det oss en del tid att förstå hur allt skulle hänga ihop.
+
+ Efter diskussion med labb-assistent fick vi ett humm om hur vi skulle göra, men det fanns fortfarande vissa oklarheter. Själva programmerandet är inte alls svårt, vi skall endast matcha värden och beroende på en matchningarna kommer segment av kod exekveras.  Det var snarare helheten som bara var allmänt förvirrande. Det som förvirrade oss mest var att de bad oss definiera en variabel. Vi tänkte att variabler deklareras när de tilldelas ett värde (t.ex. a = 2, där a är variabeln) och att det de frågade efter bara var konstigt (för assign var ju en tilldelning till variabel). För att komma fram till hur “vi” skall deklarera en variabel frågade vi oss vad “a” liknade, det såg ut som en sträng. Vi ansåg därför att vår deklaration av variabler helt enkelt representeras av ett regex uttryck som endast innehåller bokstäver. 
+
+Själva programmet verkar otroligt bra inför kommande kurs när vi ska skriva egna programmeringsspråk. Det är väldigt lätt att bestämma hur specifika ord eller tecken skall fungera, d.v.s. om de skall användas för att utföra någon kod-sats (t.ex. vill jag kanske att “if”-sats:er skall kallas “om”-sats:er). Det skall bli intressant att se om vi får stor användning av denna typ av programmering i kommande projekt. 
+
+Något som vi tycker är väldigt intressant och användbart med ruby är att man kan ha block av kod direkt efter t.ex. en regex matchning. Det ger en fler möjligheter att programmera hur man vill. 
+
+Vi hade problem med att skapa tester till uppgift 2. Med tanke på att programmet kräver indata från användaren behövde vi göra om lite i funktionerna för att vi skulle kunna skicka med data via testerna. 
+
+Nu kan jag säga att vi trodde vi var klara ungefär när jag skrev texten ovan, men nej nej så kan vi inte ha det! Vi har ett problem som vi inte förstår oss på (och diskuterar gärna på seminariet). Helt enkelt försöker vi göra om strängarna “true” och “false” till bools, men av någon anledning returneras fortfarande strängar. Vi har försökt göra jämförelser, direkt returnera bools samt försökt tilldela värdet “n” en bool som sedan returneras. Inget fungerar. 
+
+
+
+Följande kod är testad, alla returnerar sträng.
+match('true') {| n | return true} 
+match('true') {| n | n = true } 
+match('true') {| n | n.to_s.downcase == "true" }
+
+Vi påbörjade skriva tester även ifall programmet inte fungerade eftersom vi började närma oss en deadline och skulle mest troligen inte ha tid att skriva själva testerna efteråt. Hur resultatet blir kommer vi ej kunna svara på i dagsläget. Blir spännande. 
+
+Ny dag och vi närmar oss slutet. Anledningen till varför vi returnerade strängar var för att vi matchade :term med :var innan vi matchade :term med “true” eller “false”. Vi fick alltså aldrig ut true eller false eftersom vi alltid matchade en sträng först. 
+
+Till sist byggde vi en funktion som har koll på om en specifik variabel är en lagrad variabel i hashen eller ett rent bool värde. Detta för att “and” och “or” jämförelser skall funka utan problem. 
+
+ 
