@@ -68,7 +68,7 @@ class Logic
     end
 
     ## I roll_test funktion så skulle det fungera om gruppen hade
-    ## bara returnerat rad 66
+    ## bara skrivit rad 66 i den.
 
     #Uncomment for Debugger
 

@@ -4,7 +4,7 @@ require './uppgift1.rb'
 class TestParse < Test::Unit::TestCase
 
     def test_uppgift1
-        ## Mycket bra att ni har skrivit de första 2 testerna!!
+        ## Mycket bra att gruppen har skrivit de första 2 testerna!!
         #Test that the Volvo rule works
         p1_volvo = Person.new("Volvo","M", 5, 32, 58435)    
         p2_volvo = Person.new("BMW","M", 5, 32, 58435)

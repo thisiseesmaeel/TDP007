@@ -37,5 +37,5 @@ rule 3,"M",0.9
 
 rule "Volvo", 58, 1.2
 
-## Det var lite otydlig med policy.rb. Skulle vara mycket bättre om 
-## gruppen hade skrivit kommentar på det eller i utvecklarbloggen.
+## Det var lite otydlig med policy.rb i början. Skulle vara mycket bättre
+## om gruppen hade skrivit kommentar på det eller i utvecklarbloggen.

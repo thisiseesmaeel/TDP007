@@ -51,7 +51,7 @@ p = Person.new("Volvo","M", 2, 32, 58435)
 puts p.points
 
 ## Skulle vara fint att ha postalCode med på method_missing så kan
-## FB lägga till flera post numbers om de vill.
+## Försäkringsbolaget lägga till flera post numbers om de vill senare.
 ## Vi gjorde inte det själva :).
 
 ## Vi märkte senare att det finns ingen evaluate_policy funktion 
