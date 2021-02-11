@@ -1,0 +1,55 @@
+Uppgift 1:
+26/1
+
+Vår första lösningsidé var att läsa in filen rad för rad och använda regex för att hitta laget med störst målskillnad. 
+
+Vi var osäkra på hur vi sen skulle förvara och flytta runt raderna. Vi tänkte att vi kunde använda en lista med Hash-objekt för att lagra lagnamnen tillsammans med målskillnaden och därefter kunna sortera dessa. 
+
+Vi bestämde oss för att skapa en egen Team-klass att lagra värdena i för att kunna lagra fler värden och ha mer kontroll. Vi vill kunna få ut både målskillnaden och absolutmålskillnaden för att kunna lösa uppgiften. 
+
+En sak som diskuterades en del var om målskillnad alltid var positivt, som skillnader brukar vara (dvs absolutvärdet av skillnaden), eller om den kunde vara negativ. 
+
+Filen öppnas och vi loopar igenom alla dess rader. Sen delas varje rad upp i substrängar separerade av blanksteg. Ett regex-uttryck och match-funktionen används för att sortera bort raderna vi inte är intresserade av. 
+Om raden matchar sparas den som ett nytt team-objekt i en array.
+
+Därefter sorteras arrayen med sort_by-funktionen, som låter oss titta på ett specifikt attribut i vår klass för jämförelsen. 
+
+
+Väderprogrammet har överlag samma upplägg men med andra variabler. 
+
+
+Uppgift 2:
+26/1
+
+Innan arbetet med uppgift 2 började kände vi att det enda vi hade någon som hellst koll på var rexml, då det hade demonstrerats på föreläsningarna. Vi började med att titta på de kodexempel som givits där. Vi tittade även på sidorna: 
+w3schools.com/xml/xpath_syntax.asp
+https://docs.ruby-lang.org/en/2.7.0/REXML/XPath.html
+http://microformats.org/wiki/hcalendar
+
+Programmets upplägg:
+Vi börjar med att leta efter en klass 'vevent' inuti div taggarna, sen inom varje (rätt) div-element letar vi efter klasserna 'summary', 'dtstart', 'locality' och 'region' inom span-element. Vi får på så sätt en sammanfattning av vad eventet innebär samt datum/tid och plats. 
+Texten som hör till dessa klasser sparas till variabler som sedan används för att skapa ny objekt av klassen Event som läggs till en array.
+
+För att sedan skriva ut eventen på ett tydligt sätt går vi igenom event-arrayen och skriver ut 'summary', 'dtstart', 'locality' och 'region' för varje event.
+
+I parsing-funktionen tar vi in namnet på den fil vi vill gå igenom som en parameter. 
+
+Vi tar in parsing-funktionen som en parameter till print-funktionen för att där få tillgång till event-arrayen.
+
+I parsing funktionen använder vi oss av XPath.first för att få fram första instansen av den klass vi söker inom div-elementet.
+
+Problem:
+Att få ut alla div-element gick lätt, men vi stötte på problem med att XPath-funktionen inte fungerade som förväntat. Vi skapade uttryck som vi tyckte borde fungera, men vid körning fick vi ett runtime-error från xpath:
+
+	/usr/lib/ruby/2.7.0/rexml/xpath_parser.rb:569:in `node_test': [BUG] Unexpected node test: <:predicate>: <[[:eq, [:attribute, :qname, "", "class"], [:literal, "vevent"]]]> (RuntimeError)
+
+Efter experimentation kom vi fram till att kraschen inte framkom när elementnamnet skrevs med i XPath-uttrycket, dvs: "//div[@class='vevent']". Vi bad om hjälp från assistenterna, men de visste inte heller varför vi fick felet. 
+Vi bestämde oss för att helt enkelt skriva med div och span i XPath-uttrycken.
+
+
+Överlag:
+Det känns som att vi har bättre koll på hur XML och DOM fungerar efter att ha löst uppgiften. Vi stötte även på en del problem som berodde på att vi inte var helt bekväma med Rubys grunder, något vi vill träna mer på för att spara mycket felsökningstid. 
+
+Vi hade svårt att hitta lättförståelig dokumentation. Dokumentationen på ruby-doc.org är bra för att läsa om klassernas funktioner, men det är svårt att söka på sidan om man inte vet vad exakt man letar efter. 
+Sidan rubydoc.info hade lite mer lättillgänglig information i vissa fall. 
+

@@ -1,0 +1,57 @@
+Utmaningen med att lösa uppgifterna till seminarie 3 tyckte vi låg till 
+större del i att förstå teorin bakom DSLs, parsning, BNF, etc. Den faktiska
+implementationen när vi väl hade förstått vilket problem som skulle lösas var
+relativt okomplicerad. 
+
+Dock har vi haft svårt att hitta bra dokumentation och utlärningsmaterial när det
+kommer till metaprogrammering i Ruby. 
+
+
+Uppgift 1:
+
+Utifrån körexemplet antog vi att vi skulle börja med att initiera ett objekt av
+klassen Person.
+Därefter skrev vi två funktioner tillhörande klassen, evaluate policy och
+method_missing. Vi tolkade det så att endast informationen tillhörande
+tabellerna skulle stå i policy-dokumentet. 
+
+Vi läser därefter in denna information i evaluate policy-funktionen och 
+använder oss av method missing till alla funktioner för att det ska bli så 
+generellt som möjligt och den ska vara enkel att uppdatera. 
+Fördelen med detta är att enbart initialize-funktionen behöver ändras om man 
+vill lägga till nya poängkriterier.
+
+Vi var i början osäkra på vad som menades med "ett eget domänspecifikt språk som 
+dels följer grundsyntaxen i Ruby...", för om det följer Rubys syntax, är det inte
+bara Ruby då? Vi landade i denna kompromiss där varje rad ändå läses in som ruby-kod.
+
+
+Uppgift 2:
+
+När vi började titta på uppgiften hade vi svårt att se en strategi för att lösa den. 
+Vi förstod inte från början hur valid-reglerna skulle utformas, vad exakt som skulle 
+kunna jämföras i våra uttryck och hur variabler skulle lagras. Alla dessa frågetecken
+tillsammans gjorde att det var svårt att få en överblick av hur programmet skulle 
+utformas.
+
+Efter att ha kollat mer på Diceroller.rb-filen och fått lite starthjälp av 
+lärarassistenten insåg vi att det inte var så komplicerat som vi trodde först. 
+
+Vi stötte på vissa problem med parse errors. Antingen tolkades varje tecken, eller hela 
+strängen som ett token. Lösningen var att byta ordning på token-matchningarna så att
+whitespace-separerade strängar av tecken matchades innan enskilda tecken. 
+
+När vi var klara med att lösa uppgiften var vi fortfarande väldigt osäkra på om vi
+faktiskt hade tolkat frågeställningen rätt. Om vi inte har gjort det är det i  alla fall
+något vi kan diskutera på seminariet!
+
+
+Test:
+
+Vi fick först inte testen att skriva ut något alls. Det visade sig att metoderna i 
+testklassen måste ha namn som börjar med 'test' för att det ska fungera. 
+
+När testerna genomfördes upptäckte vi en del fel:
+I rule :term returnerade vi strängar istället för bools. 
+Vi insåg också att den behövde matcha :var sist, för annars kom den aldrig fram till 
+de andra matchningarna. 

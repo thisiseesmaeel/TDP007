@@ -1,0 +1,49 @@
+#Uppgift 1
+#Tolkning och beskrivning
+I instruktionerna beskrivs policy.rb som något som existerar, men det gör det inte.
+Vi tolkade därmed att vi måste själva skapa policy.rb. Vi bestämde oss för att hålla det simpelt
+och bygga upp DSL:en i formatet
+
+		namn värde, säkerhetspoäng
+
+då instance_eval() kommer att tolka det som namn(värde, säkerhetspoäng). 
+För att enkelt matcha det vi är ute efter valde vi att utöka vår person-klass den från Hash,
+så att vi kan dra nytta av all funktionalitet som Hash har och bara använda self.
+För ålder och körtkort antal år valde vi för att skriva dem som en Range för att sedan enkelt se om nummren passar in. 
+För att hålla reda på alla säkerhetspoäng har vi också skapat datamedlemmen @security_points.
+
+När vi kör evaluate_policy() kommer DSL-filen att läsas med hjälp av instance_eval(). Det finns ingen implementering
+för saker som car_brand(), postcode() etc. så vad som händer istället är att method_missing() kommer att anropas, och i den
+har vi skrivit if-satser som matchar det vi tar in med det som personen har. När matchning sker läggs poängen till @security_points.
+Sist efter instance_eval() har körts gör vi några kontroller som ändrar utifrån de speciella regler och returnerar resultatet.
+
+I våran kod returneras inte person-objektet som i körexemplet (#<Person:0x29bc890 ...>) och detta beror på att vi har utökat Hash.
+Men då instruktionerna inte specifierar att vi nödvändigtvis måste returnera själva person-objektet så där så har vi valt att tolka
+att det är acceptabelt.
+
+#Lärdomar
+När vi skrev if-satserna insåg vi att 'name == "license_span"' inte fungerade. Efter lite research
+visades det sig att Ruby inte gör implicita konverteringar. Vi behövde därmed göra
+konverteringen själv genom att använda 'to_s'. Detta är definitivt bra att veta när man jobbar med Ruby.
+
+Vi insåg även att 'args[0] == self["license_span"]' inte heller fungerade, och då lärde vi oss att
+'===' existerade och kollar något får plats i något annat, dvs. i den här kontexten blir det om '32'
+får plats i intervallet '30..39'.
+
+Vi var lite osäkra på vad instance_eval() gjorde i början men efter lite experimentering och konfirmering
+läser i princip den bara in koden och tolkar det som Ruby-kod. Kombinationen med method_missing() är väldigt användbar
+då man inte behöver skriva specifika metoder för varje metod som finns.
+
+#Tester
+I kurshemsidans körexempel har Kalle postnummret 58435, vilket inte står med i deras policy-tabell.
+Efter några tester för att få ut rätt värde (15.66) visar det sig att det ska vara 0, och med hur
+vår kod fungerar kommer säkerhetspoängen inte inkrementeras om det inte står i policy.rb.
+
+Vi skapade policy2.rb för att se om vår kod kan hantera extremfall. Det vi kom fram till är:
+- det går att skriva saker innan name och fortfarande få det att fungera så länge det inte är något konstigt som sträng ("") och int (123)
+- det går att skriva saker efter poängen så länge vi använder kommatecken (,)
+- vi måste använda kommatecken (det går inte att skriva "namn värde säkerhetspoäng" eller "namn värde, säkerhetspoäng skräp")
+
+De två sista fallen beror på användningen av args, men vi är lite osäkra på varför det första fallet fungerar. Förutom alla dessa fall måste
+huvudformatet vara "namn värde, säkerhetspoäng".
+

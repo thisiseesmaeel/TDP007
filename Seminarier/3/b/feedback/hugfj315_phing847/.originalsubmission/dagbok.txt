@@ -1,0 +1,26 @@
+Uppgift 1:
+
+Tolkning:
+
+Till en början hade vi lite svårt att förstå hur vi skulle tolka uppgiften. Men efter lite rådgivning från handledare, så kände vi att vi fick en relativt tydlig idé om hur vi ville att slutprodukten skulle se ut.att
+
+Vi tolkade det som att vi skulle, på ett så enkelt vis som möjligt, ge en användare av vårat interna DSL möjlighet att föra in statistik och regler i en separat fil, och när den sedan tolkades av vårat domänspecifika språk skulle ett grundpoängen för personen som skapades räknas ut. Vi försökte skriva våran DSL med ett enkelt och tydligt syntax som skulle kunna användas av personer utan erfarenhet av programmering.
+
+Vi tolkade det som att vi fick bestämma fritt hur vi skrev vår policy.rb. Men vi försökte se på uppgiften som ett exempel från verkligheten och tänka på hur vi kunde göra det så enkelt som möjligt (med våra kunskaper) för "kunden" att använda sig av språket.
+
+Angående hur generell vår lösning är, så är vi medvetna om att den inte är speciellt generell. Vi tänkte att vi från början bara skulle lösa uppgiften och sedan i mån av tid försöka göra den mer generell. Vi kände tyvärr inte att tiden för att göra den mer generell fanns. Vi är speciellt missnöjda med hur våra speciella regler (rules) skrivs. Det är en lösning som fungerar, men den känns otydlig.
+
+Utförande:
+
+Vi skrev till en början vår "policy.rb" som hash maps. Detta på grund av att vi från början inte riktigt förstått anledningen att vi ens skapar ett domänspecifikt språk; att hjälpa ickeprogrammerare ta använding av programmeringens många härliga hjälpmedel med arbetsuppgifter av en specifik sort, utan att behöva lära sig att koda.
+
+"Brands" och "Gender" i policy.rb använder sig av "method_missing" funktionen i person.rb. För resterande tabeller har vi skapat nya funktioner, vi skapade funktionen range för att kunna använda den till både "licence_years" och "age". Vi skiljer på vad den jämför med genom att spara namenet på tabellen i en variabel och kollar med en if-sats vilken range den vill jämföra med.
+
+På till exempel range så kan man tycka att "-" hade varit mer intuitivt än "..". Vi tyckte däremot att .. var lätt nog att förstå som ickeprogrammerare och det innebar att vi inte behövde skapa en "översättning" utan kunde läsa argumentet rakt av och använda den skrivna regeln rakt av i vår kod. 
+
+Tekniker:
+
+Vi försökte använda method_missing så mycket som möjligt för att generalisera programmet med så lite kod som möjligt. En annan ny sak vi stötte på var att jämförelse i en range skrivs "===". 
+
+Tester:
+

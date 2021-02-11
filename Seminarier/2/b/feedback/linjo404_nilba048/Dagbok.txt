@@ -1,0 +1,62 @@
+Uppgift 1a:
+Tolkning:
+Här tolkade vi uppgiften som att vi skulle skapa en funktion för att returnera det lag som hade minst skillnad mellan antal gjorda och antal insläppta mål, sedan ytterligare en funktion för att returnera en "lista" med lagen rangordnade från bästa till sämsta målskillnad. Dvs det lag som har störst positiv skillnad mellan gjorda och insläppta mål högst upp.
+
+Utförande:
+Vi skapade två regexmönster med hjälp av rubular, ett som plockar ut lagnamnet, och ett som plockar ut antal gjorda och antal insläppta mål. 
+
+Efter det använde vi regex-funktionen scan för att skapa en lista av alla matchningar för varje mönster. 
+Detta gjorde så vi fick två lika långa arrayer. En med alla lagnamn och en med element bestående av mål gjorda och mål insläppta.
+Vi itererade genom den sistnämda listan och fyllde på en ny lista med absolutvärdet av gjorda mål subraherat med antalet insläppta mål.
+
+Vi plockade sedan ut det minsta talet och dess index samlat i en array med hjälp av ".each_with_index.min()" Vi kunde ta detta index och returnera lagnamnet från lagarrayen med samma index. Detta var möjligt då vi aldrig ändrat ordningen på någon av de två arrayerna eller på något sätt "tappat" element från någon av dem.
+
+Funktionen för att returnera en "lista" med lag sorterad baserat på måslskillnad använder sig av samma princip som föregående funktion. Skinnaden är att vi sorterar den listan med hjälp av "sort" och sedan vänder vi på den med "reverse" för att få önskad ordning. Eftersom differenslistan nu är sorterad itererar vi över den och använder indexinformationen i varje element för att plocka fram motsvarande lag ur lag-arrayen. Efter varje lagnamn lägger vi till en newline-karaktär för att separera lagen i resultatsträngen.
+
+Tekniker:
+Vi stötte på en del nya tekniker här, som tex "each_with_index". Detta tyckte vi var väldigt smidigt då man slapp, som i tex Python att, göra tex en for-loop för att iterera genom behållaren och hålla koll på index manuellt. Det var lite av en "Var har du varit hela mitt liv" grej. Vi hittade även ".to_i" som castar om ex en sträng till en integer. Att casta om datatyper känns enkelt och mer problemfritt, än så länge, i Ruby, om man jämför med tex C++.
+
+Uppgift 1b:
+Tolkning:
+Vi tolkade det som att vi skulle skapa en funktion som returnerar dagnummret på den dag som hade minst skillnad mellan max och min-temp. Sedan en funktion som returnarar en "lista" som är sorterad efter skillnaden på max och min-temp. Vi valde att lägga den med lägst skillnad högst upp i listan.
+
+Utförande:
+Tillvägagånssättet liknar föregående uppgift på många vis. En skillnad är att vi bara använder oss av ett regexmönster, där vi plockar ut dag, min-temp och max-temp. Detta gör att vi inte behöver hålla reda på index. 
+
+Vi skapar en differenslista, där vi skickar med dagnummret och differnsen mellan min och max-temp. Sedan returnerar det minsta elementet med hjälp av "min_by".
+
+I den andra funktionen retrurnerar vi istället alla element i listan sorterat från minsta differnsen till största, även det med "min_by", skillnaden här är att vi skickar med en parameter som berättar hur många element den ska returnera.
+
+Tekniker:
+Ny teknik här var att i "min_by" skicka med antalet element som ska returneras.
+
+Tester:
+För den första delen av uppgiften testade vi även med en textfil vi skapade själva. Filen hade samma format som given fil men innehöll större siffror och lag med lika stor målskillnad. För fotbollstabellen där vi använder "sort_by" så byter den ut det lägsta när den hittar något med lägre eller samma värde. För vädertabellen där vi använder "min_by" så byter den bara ut om den hittar ett mindre värde.
+
+Vi är medvetna om att vi har få tester, men vi kunde inte komma på några rimliga extremfall för denna typ av uppgift, utan vi nöjde oss när vi såg att funktionerna fungerade som väntat.
+
+Uppgift 2:
+
+Tolkning:
+Vi tolkade uppgiften som att vi skulle skapa en funktion som lagrar information om de olika kalenderhändelserna i ett objekt. Efter att ha sökt lite på vad som specificerar ett objekt i Ruby så insåg vi att det mesta man skapar i Ruby blir ett objekt och inte bara instanser av egenskapta klasser. Vi valde att arbeta med en array för att lagra varje event, sedan en hashmap för att lagra alla events information. Vi tolkade det som att alla event som finns ligger under klassen "vevent". Därför utgå vår sökväg därifrån.
+
+Utförande:
+Vi började med att testa oss fram för att lyckas komma åt informationen som liggen inom div-taggarna med klass-attributet "vevent" och skriva ut detta i terminalen. Det vi kom fram till, efter att ha kollat w3schools guide om xpath, blev "doc.elements.each("//div[@class='vevent']//span") { |n| puts n.text }".
+
+Vi gjorde en array av hashmappar, där varje map skulle motsvara ett event. Vårt första steg var att lägga in så många tomma hashmaps som det fanns event i textfilen. För att lösa detta skapade vi en map vi kallade för "a_dict".
+Sedan loopade vi igenom matchningar för summaries då det finns en summary för varje event och för varje matchning lade vi till "a_dict" i en map. Vi loopade sedan igenom all information med datum, beskrivningar av eventen etc och uppdaterade motsvarande map i vår array med den informationen. 
+I slutändan visade det sig att saker inte hade gått riktigt som vi hade tänkt. Varenda map var identisk vid kontroll med utskrift. Efter hjälp från handledare insåg vi att anledningen var att vi hade skapat referenser till samma map när vi lade in flera "a_dict" i vår array i början av programmet.
+När vi ändrade på en av ett värde i en av våra maps så ändrades värdet i vår "original" map och det var denna map som refererades på varje plats i vår array.
+För att åtgärda detta bytte vi ut "a_dict" mot "Hash.new" vid skapandet av arrayen. Detta gjorde att det skapades en ny map för varje plats i arrayen.
+
+För att lägga till eventen i arrayen, söker vi igenom html-filen med "each_with_index" och ett sökkriterie för varje element som ska matcha den info vi vill lägga till i vår map i arrayen.
+
+Sedan skapade vi en print-funktion som skriver ut vår array i ett snyggare format.
+
+Tekniker:
+Vi valde att använda oss av DOM-parsning då det kändes mest logiskt och intuitivt för oss som parsningsnybörjare. Vi har använt oss av parsern REXML då det var det vi gick igenom på föreläsningarna och vi tycker att w3schools hade bra förklaringar och exempel. 
+För att skriva sökvägarna till elementen vi vill ha ut information om, tog vi hjälp av w3schools guide. Det har krävts en del testning för att få det att fungera, men i det stora hela har det gått bra.
+
+Tester:
+Vi testade att olika värden i våra hashmaps som representerar enskilda event hade rätt textsträng med hjälp av assert_equal.
+Vi testade också att göra identiska tester på både hela sidan och roten av sidan, till stor del eftersom vi var nyfikna på om beteendet var detsamma för vårt program. Det var det.

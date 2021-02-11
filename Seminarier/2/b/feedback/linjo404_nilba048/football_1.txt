@@ -1,0 +1,8 @@
+<pre>
+       Team            P     W    L   D    F      A     Pts
+    1. Arsenal         38    26   9   3   999  -  36    87
+    2. Liverpool       38    24   8   6   240  - 190    80
+    3. Manchester_U    38    24   5   9    74  -  52    77
+    4. Newcastle       38    21   8   9    74  -  52    71
+    5. Leeds           38    18  12   8     0  - 937    66
+</pre>
