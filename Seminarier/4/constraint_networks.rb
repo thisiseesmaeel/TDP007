@@ -264,17 +264,19 @@ class Connector
   end
   
   def assign(v,setter)
-      if not has_value? then
-        @logger.debug("#{name} got new value: #{v}")
-        @value=v
-        @has_value=true
-        @informant=setter
-        (@constraints-[setter]).each { |c| c.new_value(self) }
-        "ok"
-      elsetersom output noden ändras blir det mycket svårare att sätta ihop nätverket med noder.on.new("#{name} already has value #{value}.\nCannot assign #{name} to #{v}")
-      end
+    if not has_value? then
+      @logger.debug("#{name} got new value: #{v}")
+      @value=v
+      @has_value=true
+      @informant=setter
+      (@constraints-[setter]).each { |c| c.new_value(self) }
+      "ok"
+    else
+      if value != v then
+        raise ContradictionException.new("#{name} already has value #{value}.\nCannot assign #{name} to #{v}")
     end
   end
+end
   
   def to_s
     name

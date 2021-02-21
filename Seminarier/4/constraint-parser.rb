@@ -364,16 +364,19 @@ class ConstraintParser < Parser
       end
 
       rule :expr do
-
         match(:expr, '+', :term) do |a, _, b| 
           conn_a,conn_b,conn_c=get_connectors(a,'+',b)
           Adder.new(conn_a,conn_b,conn_c)
+          # ********** CHANGED HERE *************** 
+          conn_c 
         end
 
         match(:expr, '-', :term) do |a, _, b|
           conn_a,conn_b,conn_c=get_connectors(a,'-',b)
           # a-b=c <=> a=b+c
           Adder.new(conn_b,conn_c,conn_a)
+          # ********** CHANGED HERE *************** 
+          conn_c 
         end
 
         match(:term)
@@ -394,7 +397,7 @@ class ConstraintParser < Parser
         end
         
         match(:atom)
-        
+
       end
     
       rule :atom do
@@ -411,9 +414,15 @@ class ConstraintParser < Parser
     @connectors[name_c]=conn_c
     [conn_a,conn_b,conn_c]
   end
-
-  def get_connector(x)
-    puts "get_connector"
+  
+  # ********** CHANGED HERE *************** 
+  ## Lade till funktionen som returnerar out-variabeln för alla saker
+  ## som inte är connectors.
+  def get_connector(conn)
+    if (conn.is_a?(Connector))
+      return conn
+    end
+    return conn.out
   end
 
   # Unify the connectors on the left and right hand side of an equality
@@ -421,11 +430,11 @@ class ConstraintParser < Parser
     lh_conn,rh_conn=[get_connector(lh),get_connector(rh)]
     conn,exp=[nil,nil]
     if rh.is_a?(ArithmeticConstraint) then
-      exp,conn=rh,lh_conn
-      @connectors.delete(rh_conn.name)
+     exp,conn=rh,lh_conn
+     @connectors.delete(rh_conn.name)
     elsif lh.is_a?(ArithmeticConstraint) then
-           exp,conn=lh,rh_conn
-           @connectors.delete(lh_conn.name)
+          exp,conn=lh,rh_conn
+          @connectors.delete(lh_conn.name)
     end
     exp.out=conn
     conn.add_constraint(exp)
@@ -433,16 +442,17 @@ class ConstraintParser < Parser
   
   def parse(str)
     @connectors={}
-    super(str)
+    super(str)  
   end
 
 end
 
-
 # Test:
+#cp = ConstraintParser.new
+#c, f = cp.parse "9*c=5*(f-32)"
+#f.user_assign(0)
 
- cp=ConstraintParser.new
- c,f=cp.parse "a=b*2"
+#f.user_assign(100)
 
 # irb(main):827:0> f.user_assign 0
 # D, [2007-03-03T15:16:56.409386 #18327] DEBUG -- : f lost value
