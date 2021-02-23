@@ -1,0 +1,90 @@
+21-02-19
+Seminarie 4
+
+Tolkning
+
+Uppgift 1
+
+Vi tolkade upgiften på så sätt att vi skulle skapa ett constraint-nätverk m.h.a. 
+Connector, ConstantConnector, Adder och Multiplier klasserna. Vi tolkade att vi
+fick ändra i klasserna hur vi ville tills klasserna fungerade som önskat. Vi valde
+att skapa ett constraint-nätverk som representerade konvertion mellan Celsius och
+Fahrenheit utifrån formeln: F = 1.8 * C + 32.
+
+Uppgift 2
+
+Vi tolkade att vi skulle skapa ett constraint-nätverk genom att parsa en sträng som 
+innehåller en ekvation. Parsningen ska returnera en instans av Connector för varje variabel.
+Vi tolkade att vi fick ändra i både filerna för att få det att fungera. 
+
+Lösning
+
+Uppgift 1 del 1
+
+I utgick till en början från vad som gick fel när vi körde "test_adder" funktionen, 
+vi upptäckte att den okända variabeln i ekvationen aldrig uppdaterade sitt värde.
+Nästa steg var att identifiera vart i koden en Connector uppdaterade sitt värde,
+till slut ringade vi in funktionen "new_value". Det som saknades i den funktionen 
+var att lägga till funktionalitet så att nätverket kunde determinera vilken Connector
+som var den "okända" variabeln för att sedan uppdatera dess värde. Detta löste vi genom
+att först kolla att det enbart finns en connector som inte har ett värde. Sedan kollar 
+vi vilken av de tre connectors som inte har värde och beroende på om det är input eller
+output connector använder vi olika operatorer för att beräkna dess värde. 
+
+Uppgift 1 del 2
+
+Det enda vi behövde göra var att skapa en instans av Multiplier (c * 1.8 = res) och en
+instans av Adder (res + 32 = f) med variablerna som objekt av klassen Connector och 
+konstanterna som objekt av klassen ConstantConnector.
+
+Uppgift 2 
+
+Under lösningens gång ansåg vi att det var lättare ifall vi la till Subtractor och Divider klasser, det
+var den enda ändringen vi gjorde i constraint_networks filen. Detta förenklade både constraint_network
+och constraint_parser filerna på så sätt att out-värdet för ArithemticConstraints alltid var det värde 
+vi alltid ville komma åt.
+
+De ändringar vi gjorde i constraint_parser är: 
+
+ConstraintParser initialize
+
+Här ändrade vi i lexer-delen av parsern där det tidigare stod:
+
+    match(:expr, '=', :term) till  match(:expr, '=', :expr)
+
+På alla matchningar la vi samma typ av rule på vardera sida av operatorn eftersom vi vill kunna skriva 
+uttrycken oberoende av på vilket led som de befinner sig.
+
+När vi matchar '-' eller '/' operatorn skapar vi instans av Subtractor respektive Divider klassen, då vet vi
+att output alltid blir densamma för alla ArithemticConstraints.
+
+get_connectors
+
+Här har vi ändrat så att den nya Connectorn som ska skapas är unik
+och får namnet baserat på output för respektive input Connector(conn_a, conn_b) ifall 
+en Connector som skickas in i funktionen skulle vara av klassen ArithemticConstraints.
+
+get_connector
+
+Här skapar vi en funktion som utför samma funktionalitet som ovan fast för ett uttryck istället för två.
+
+
+replace_conn
+
+Ändringar vi utförde här var att se till att ekvationer som c=f och c=2 fungerade, detta genom att
+att vi skapar en instans av Connector med defaultvärdet och sedan skapar en instans av Adder som 
+kommer att addera 0. Därmed får c samma värde som anges på motstående del av "=" tecknet.
+
+parse
+
+Ändringen här är att funktionen tar bort en extra connector som vi la till för att ekvation som c=f, c=2 att funka (se stycket ovan).
+
+
+Reflektioner
+
+Laborationen var en utmärkt exempel på hur svårt det är att modifiera andra personers kod i ett nytt ämne.
+Constraint-nätverk verkar främst vara användbara i matematiska programmerings-sammanhang. Att vi använde samma
+parser som vid förra laboration gjorde att vi inte kände oss helt borta, det fanns något att jämföra med och dra slusatser ifrån.
+När uppgifterna var extremt unika och nästan omöjliga att få alternativa källor för. 
+
+Något unikt som vi upptäckte var Ruby:s operator "||=" som tilldelar en varibel om V.L är false, undefined eller nil. 

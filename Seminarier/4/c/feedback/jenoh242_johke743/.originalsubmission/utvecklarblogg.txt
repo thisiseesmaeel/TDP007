@@ -1,0 +1,19 @@
+Uppgift 1
+Vi började att läsa koden i test_constraints för att försöka förstå hur programmet är uppbyggt, det var ganska svårt eftersom det är en del kod, men i slutet av uppgiften förstod vi majoriteten av all koden. Vi försökte identifiera varför a och b gav c ett slutvärde, men c och b inte kunde ge a ett slutvärde. Vi kom tillslut på att det hade med villkorssatsen att göra, vi tydligt kollade efter om a och b hade värden, men vi kollade aldrig om b och c eller a och c hade värden. När vi kom på detta var resterande lätt, så länge man hade rätt operatorer. 
+
+Därefter fixade vi funktionen som skall konvertera celsius till fahrenheit, och vice versa. Gruppens förståelse av uppgiften var först inte enad, men efter lite förklaringar var allt klart. Tanken var att man hade flera komponenter som representerade olika värden i olika kretsar. När en tom komponent (i vårt fall c eller f) får ett värde, blir det en viss kedje-reaktion via flera kretsar som resulterar i att den andra komponenten får ett specifikt värde.
+
+Koden är relativt simpel, men vi tyckte det var lite jobbigt att behöva göra komponenter för enkla heltal. 
+
+Mycket av uppgiften handlade om att greppa hur constraint-networks faktiskt fungerar. Man önskar att handledare hade erbjudit lite mer engagerad tid för att förklara konceptet, så vi blev väldigt glada när pontus ville förklara mer i slutet av en föreläsning som i vår uppfattning inte riktigt var till för det.
+
+Uppgift 2
+Andra uppgiften var också svår i början. Vi tolkade uppgiften att det fanns kod som skulle redigeras eller läggas till för att fungera. Vi försökte oss på att lösa problemen genom att läsa felmeddelanden och stegvis lösa en efter en. När vi fastnade började vi läsa igenom kod för att försöka förstå oss på hur allting fungerade. Det var ganska svårt och även ifall man förstod majoriteten av koden fanns det fortfarande vissa områden som var svåra att greppa.
+
+Vi spenderade ganska mycket tid på att egentligen inte göra någonting. De lösningarna vi kom på ledde ingenstans och när vi diskuterade med labb assisten fick vi humm om vad vi skulle göra, men kom aldrig riktigt fram till målet.
+
+Det var först när Pontus skrev några tips i Teams som vi löste problemet relativt  kvickt. Vi la till divider och subtracter vilket gjorde att den variabel som skall bearbetas alltid är “out”. Därefter var det bara att lägga till någon mindre funktion och lite andra saker i reglerna som gjorde att allting funkade som det ska. 
+
+Vi har en lite “ful” lösning för att räkna ut “variabel = heltal”. Eftersom ingen av sidorna om likamedtecknet är kretsar skulle det leda till ett logiskt fel (detta eftersom conn, exp i “replace_conn” aldrig tilldelas värden). Vi löser det genom att tilldela connectors i “adder”-kretsar där de adderas med 0. Så uttrycket c = 32 funkar eftersom det egentligen står 0 + c = 32 + 0. Vi funderade på om det gick att implementera en liknande lösning fast utan att tilldela våra “connectors” till kretsar. Alltså “conn = conn” endast (vi skapar inga extra kretsar). 
+
+Vi har märkt att x = y funkar bra, men ett uttryck som x = 1 inte funkar. Det är ganska konstigt. 

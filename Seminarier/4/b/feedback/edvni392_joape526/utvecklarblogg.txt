@@ -1,0 +1,57 @@
+#Uppgift 1
+#Tolkning, beskrivning och tester
+Vi spenderade mycket tid på att inspektera koden och försöka följa händelseförloppet med antagandet att uttrycket
+a + b = c fungerade enligt matematiska regler. Vi började att definiera a och b i våra tester för att få ut c, vilket
+funkade. Sedan provade vi att glömma bort a, vilket gjorde att både a och c glömdes bort, vilket låter logiskt då
+c är beroende på a. Men efteråt när vi försökte glömma bort b så försvann både a och c, och att försöka definiera c
+ignorerades den. Vi testade även att glömma bort c direkt efter att ha räknat ut den, men det funkade inte. Vi djupdök
+då i koden och insåg att lagoiken inte var särskilt matematiskt och baserades istället runt vad @informant är. Den är
+falsk av default, men såfort vi definierar själva blir det "user" och för variabeln som räknas ut blir @informant
+något liknande [a + b == c]. Detta gjorde att if-satsen i forget_value() föll samman under omständigheter nämnt tidigare.
+
+Vi bestämde oss därmed för att utgå ifrån logiken som finns i programmet (alltså, hur @informant dikterar) och höll oss
+därmed i dess ramar.
+
+Själva programmet som skulle göras till uppgiften var inte så komplex enda tröskeln var att översätta ekvationen till 
+adders och multipliers. Vi använde oss av F = °C * 1.8 + 32 vilket vi översätte till 5 connectors: adder: [a, b, c], 
+multiplier: [d, e, b]. Så out i multi blir blir kopplat till b i adder.
+
+Samma sak skulle hända för celcius2fahrenheit om vi räknade ut celsius och försökte glömma bort celsius. Vi såg ingen mening
+med att glömma det man nyss räknat ut och skrev därför inga tester för det.
+
+#Lärdomar
+
+Vi lärde oss bl.a. att [1,2,3] - [1,2] = [3] under vår inspektion av koden, då detta var särskilt aktuellt för lost_value(),
+som kör forget_value() på de andra Connectors (för att se om de var fördefinierade eller inte).
+
+#Uppgift 2
+#Tolkning och beskrivning
+
+Det tog lite tid att kolla igenom koden och upptäcka att det var inte så många fel. 
+
+Det första problemet vi hittade var att get_connectors() inte alltid enbart fick in Connectors utan också ArithmeticConstraints,
+vilket skapade problem när den försökte göra Connector.new(). Lösningen vi kom fram till var att skriva en if på början av metoden
+som koller om det är en ArithmeticConstraint, och om det var det tar vi enbart ut uttrycket som vi vill använda
+exempel: ( #<Adder: 32 + f-32 == f tar vi ut f-32).
+
+Det andra problemet med koden är i replace_conn() som använder sig av metoden get_connector, vilket inte existerar. Därmed skapade vi den
+och såg till så att varje led returnerade resultatet.
+
+#Lärdomar
+
+"||=" är något som vi inte stött på tidigare och det lustiga med det är att det verkar vara en svår operator att
+förstå enligt de första stackoverflow trådarna vi hittade. Vi hittade en bra förklaring på denna
+hemsida: https://www.rubyguides.com/2018/07/ruby-operators/#Assignment_Operators.
+Vad "a ||= 100" betyder är om a är nil eller false tilldelar vi det 100, annars låter vi a vara.
+I slutändan blev detta inget aktuellt för uppgiften men trots det intressant att veta.
+
+#Tester
+
+Vår terminal skiljer sig åt lite från körexemplet, framför allt i början efter f.user_assign. Istället för att glömma bort
+f som i dete första körexemplet ignorerar våran kod f och hoppar direkt till f = 0. I det andra körexemplet skiljs utskriften
+av "Notifying" då i våran skrivs det t.ex. "[#<Adder: 32 + f-32 == f>]" istället för bara "f-32 + 32 == f". I detta fall
+inser vi att dessa avvikelser är irrelevanta då själva händelseförloppet är densamma och resultatet som kommer ut stämmer.
+
+
+
+

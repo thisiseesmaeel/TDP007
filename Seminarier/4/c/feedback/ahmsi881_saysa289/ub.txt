@@ -1,0 +1,64 @@
+uppg1:
+Vår DSL skriven i policy.rb är byggd i tabellform. Rubriker är kommentarer för att inte köras som kod. Resten tolkas som funktionsanrop när filen parsas med instance_eval(). När ingen metod hittas med det givna namnet och parametrarna (vilket det aldrig kommer göra) kallas metoden method_missing(). Genom att överskugga den kan vi utföra operationer på varje rad.
+
+method_missing() har två parametrar. Namnet på funktionen som anropas och dess parametrar (noll eller fler, som hamnar i listan args). Namnet och args listan skickas vidare till update_points där uträkning av poäng sker. Anledningen till att skicka vidare är att göra funktioner ska ha beskrivande namn och uppgifter.
+
+När hela policyn är läst har poängen uppdaterats så nu kallas extra_rules där poängen multipliceras beroende på saker.
+Till sist returneras poängen.
+
+Anledningen till att poängen nollställs i början av evaluate_policy är om man kör metoden flera gånger på samma person.
+
+Ålder och år med körkort sparas som ett årtal för att kunna räknas ut dynamiskt när det behövs ifall objektet sparas under längre tid.
+
+Vi använder attr_accessor för att kunna uppdatera saker ifall info ändras så man slipper göra ett nytt objekt. Poängen sparas endast för att vara tillgänglig inom objektet. Det finns ingen access till det så för att få ut poängen behöver man köra evaluate_policy vilket automatiskt uppdaterar den enligt gällande info och regler.
+
+Alla uppenbara uträkningar är testade. Följande edge cases är kontemplerade men avvisade pga tolkning av uppgift:
+Ålder under 18? Vi antar att den kontrollen redan är utförd.
+Ålder över 99? Ingen poäng kommer att läggas till vilket är detsamma som att ge poäng 0. Det är rimligt att poängen narmar sig noll vid stigande ålder.
+Ingen bil? Vi antar att man bara kan försäkras om man har en bil så det behövs ingen koll för det.
+Negativ ålder/erfarenhet? Vi skulle kunna ange en kontroll för det men antar att bara positiva heltal matas in.
+
+
+uppg2:
+Parser-funktionaliteten är hämtad från filen "rdparse.rb", klassen "Compiler" är den egenprogrammerade, men även den är kraftigt inspererad av "rdparse.rb". Klassen "Compiler"s konstruktor innehåller reglerna för både Lexern och Parsern.
+
+Lexern fungerar efter följande:
+1. Rensar ut alla tomrum med regex /\s+/ genom att göra tokens av de utan att returnera och spara ner dem.
+2. Kollar efter tal i språket och gör de till heltal (tokens), detta görs med regex /\d+/.
+3. Kollar efter textsträngar, som kan innehålla ordbindelser och siffror med regex /[\w\b]+/.
+4. Kollar efter övriga karaktärer (till exempel paranteser) med regex /./.
+
+Problemet med lexern är att den i teorin tillåter variabelnamnet "1var" enligt regexet /[\w\b]+/, men på grund av ordningen lexern läser koden kommer "1" tolkas som ett tal innan hela token läses in. Därmed krashar lexern ifall "1var" (eller liknade) matas in som variabelnamn.
+
+När tokens är uttagna tolkar parsern syntaxen efter definierade regler på kurs-sidan. Funktionen match fungerar lika som funktionen token() i Lexern, varje "_" parameter är beslutat betäckna en oanvänd parameter. Till exempel när textraden "(set a true)" matchar mot ASSIGN, vill man bara använda sig av parametern som tar in variabelnamnet ("a") och värdet ("true"). Resten av alla matchande tokens behöver vara med och tas in som parametrar, eftersom match() dömer efter ordningen de kom: exempelvis "(set a_1 true)" bildar ordningen för parametrarna "|_, _, a, b, _|" där parametern"a" är variablen "a_1" och parametern "b" är värdet "true".
+
+"VAR" som enligt uppgiften ska vara egendefinierat använder samma regex som i lexern för att tolka variabelnamn.
+
+Parsern går igenom koden rekursivt, därmed kan man göra hur invecklade sant-och-falskt-uttryck som helst.
+
+Ett problem med språket som skulle kunna rättas i parsern är att den inte kan ta in siffror, men eftersom det inte är krav på det i uppgiften, har det inte tillämpats.
+
+Slutligen har de övriga metoderna i klassen Compiler som "log" hämtas från "rdparse" (för att korrekt kunna uttnyttja Parser-klassens loggning) och metoden "code" är kraftigt inspererad av metoden "roll" i DiceRoller-klassen.
+
+
+
+Det finns inget enkelt sätt att simulera användarimatning i ruby, för att testa "uppg2.rb" korrekt börja att skriva följande i terminalen:
+
+> irb
+
+> require '[PATH]/uppg2.rb'
+=> true
+
+> Compiler.new.code [code-name="Parser code"] [line-num=1]
+
+> ["Parser code": 1] #Here you can start coding...# 
+
+
+Typer av expr i koden:
+(set VARNAME {true|false|expr}) - tilldela variabel värde
+(or {VARNAME_1|true|false|expr} {VARNAME_2|true|false|expr}) - jämför två värden
+(and {VARNAME_1|true|false|expr} {VARNAME_2|true|false}) - kolla om båda värderna är sanna
+(not {VARNAME|true|false|expr}) - kolla om värdet inte är sant
+
+----------------
+exit - avslut kodning (skriver inte till programmet)

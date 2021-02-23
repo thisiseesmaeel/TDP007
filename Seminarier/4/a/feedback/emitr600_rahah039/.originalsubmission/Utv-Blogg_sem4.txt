@@ -1,0 +1,37 @@
+De största utmaningarna med den här laborationen var att sätta sig in i hur 
+koden fungerade, vad ett constraint network är, och hur connectors-klassen 
+var uppbyggd. 
+
+Något som var annorlunda med dessa uppgifter mot tidigare laborationer och
+kurser var hur mycket given kod vi var tvungna att sätta oss in i, och hur 
+små ändringar i denna vi behövde göra. Tidigare har vi skrivit större delen 
+av koden själv, och det känns som att det då är lite andra färdigheter som 
+krävs. Koden var även relativt abstrakt och med många delkomponenter vilket
+gjorde den svårare att förstå. 
+
+Uppgift 1
+Efter vi skapade testen upptäckte vi relativt snabbt följande brist 
+i den givna koden:
+I funktionen new_value i ArithmeticConstraint saknades funktionalitet 
+för att nätverket skulle vara bidirektionellt, det vill säga att 
+förändringar skulle propagera genom nätverket oavsätt vilket connector-värde 
+som förändrades.
+  Vi lade till två nya kontroller på vilka värden som skulle ändras, 
+med kod som till stor del liknade den givna. Det kändes inte som världens mest 
+eleganta kod, men den är lättläst och verkar göra det den ska. 
+
+Vi insåg inte först vad det innebar att skapa ett nytt constraint-network med
+de givna komponenterna, utan trodde att vi kanske skulle skapa en ny typ
+constraint. Det berodde på att vi var helt på det klara med vad varje del av 
+den givna koden gjorde, och rent konceptuellt hur programmet skulle fungera. 
+Det tog oss rätt lång tid innan vi förstod vad vi faktiskt skulle göra, men
+när vi väl insåg hur det skulle fungera gick det snabbt att lösa uppgifterna. 
+
+Uppgift 2
+För oss kändes det logiskt att lägga till en inverse operator i våra constraint, 
+för att utföra division och subtraktion. Eftersom vi gjorde detta behövde vi 
+också ändra ordningen på parametrarna i adder och multiplier-klasserna. 
+
+Det saknades en get_connector-funktion som ser till att rätt connector returneras i 
+get_connectors- och replace_conn-funktionerna.
+

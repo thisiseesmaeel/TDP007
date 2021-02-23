@@ -1,0 +1,36 @@
+Uppgift 1
+
+Tolkning:
+Vi tolkade uppgiften som att vi skulle lösa så att Multiplyer och Adder fungerade oavsett vilken variabel som var okänd i ekvationen. 
+Sedan skulle vi skapa ett constraint-nätverk i form av en funktion som i vårt omvandlar celsius till fahrenheit eller vice versa.
+Vi skulle även skapa enhetstester för att se att allt fungerade som det skulle.
+
+Utförande:
+Redan från började klarade programmet av att räkna ut högra sidan av en ekvation genom att utföra en operation de två första värdena emellan
+och tilldela den okända "connectorn" resultatet av uträkningen. Vi behövde helt enkelt se till att uträkningen fungerade även åt andra hållet, 
+alltså att en av de första två värdena var okänt. Det vi gjorde var att i funktionen new_value skapa två till fall där vi kollade om a eller om b saknade värde och isåfall anpassa uträkningen efter det. Vi kopierade helt enkelt första fallet som redan fanns, men bytte ut vilken variabel som saknades. Detta gjorde att ekvationen kunde lösas åt "alla håll".
+
+För att lösa så vi kunde omvandla celcius till fahrenheit och tvärtom skapade vi funktionen celsius2fahrenheit, i den funktionen skapar vi olika connectors, bla "add" med värdet 32 och "multi" med värdet 1.8. Vi skapar sedan objekt av klasserna Adder och Multiplyer med respektive connectors.
+
+Tekniker:
+Detta var första gången vi använde send. Att använda denna metod för att beräkna ut det okända talet var väldigt snyggt och smidigt och något vi kan se oss själva använda mer i fortsättningen. 
+
+Tester:
+Vi ville med adder och multiplier se till att det fanns minst ett test för varje möjligt tal (alltså a, b och c) att vara det okända för testerna av de båda klasserna.
+
+Med celsius till farenheit var vi intresserade av om det gick att konvertera åt de båda hållen. Vi såg även till att ett av testerna hanterade negativa tal. 
+
+---------------------------------------------------------------------------------
+Uppgift 2:
+
+Tolkning:
+Som vi förstod det skulle vi med hjälp av det vi byggt i uppgift 1 hitta ett sätt att parsea ekvationer för att sedan returnera värdet på den okända variabeln.
+
+Utförande:
+Det absolut första vi gjorde var att ändra på var :start-matchning. Vi förstod från första början att det inte var någon idé att begränsa vår översta matchning på det sätt som det först var skrivet: ":expr  '=' :term". Detta var begränsande därför att :expr, som matchar addition och subtraiktion två tal emellan, matchar :term om det tidigare inte hittats. Då båda sidorna skulle kunna ha vilka operatorer som helst mellan sina respektive värden ändrade vi på sidan som hade :term till :expr. Det andra vi gjorde var att skapa funktionen get_connector, då vi såg att det var pga avsaknaden av denna programmet kraschade. Efter att ha pratat med handledare insåg vi att det denna funktion skulle göra var att returnera connectorn ur en ArethmeticConstraint. Det tog oss lite tid att förstå hur detta skulle göras, men efter en bra förklaring av handledare förstod vi att vi skulle gå in i connectors-hashen som hade skapats och hämta ut "out" därifrån. Sedan ändrade vi i get_connectors så att den även skapade connectors från conn_a och conn_b. När vi löst detta fungerade programmet som väntat med addition och multiplikation, men division och subtration fungerade ej. Vi såg då ett tips Pontus hade skrivit om att man skulle skapa egna klasser för detta i constraint_networks. Efter att ha implementerat dessa och skapat objekt av dem vid rätt matchning fungerade även detta. Det programmet inte klarade av nu var exempelvis okänt tal som nämnare, till exemplel "c-1= 10/f", här ger vårt program att f=100 om c sätts till 11. Detta fall har vi märkt av, men eftersom lösningen fungerar i stort och på de exempelfall som gavs ansåg vi med laborationens omfattning i åtanke att det fick låta vara. 
+
+Tekniker:
+Vi tyckte det var svårt att felsöka och gå igenom såpass mycket given kod i ett område vi inte känner oss helt bekväma med än. Uppgiften blev väldigt tidskrävande och mycket tid har gått åt för att bara försöka förstå oss på vad den givna koden gjorde. Detta sätt att arbeta har vi provat på tidigare men detta kändes betydligt mycket svårare än tidigare uppgifter. Alla tekniker vi använde oss av är tekniker vi kommer behöva kunna som rinnande vatten för att klara av nästa projektkurs, så det kändes som en viktig uppgift att klara av och förstå de uppgiftens innehåll.
+
+Tester:
+Våra testning för denna uppgift har pågått genom hela uppgiften, vi har kontinuerligt skrivit ut värden och typer i terminalen för att försöka hänga med på vad som händer. Testerna vi skapade i testfilen testar de givna fall som uppgiften säger att programmet ska klara, samt att testa lite enklare ekvationer där vi tilldelar c ett värde, både negativt och positivt. Utöver dessa testade vi några extra fall för att bli mer säkra på att programmet fugerade som vi hade tänkt. 
